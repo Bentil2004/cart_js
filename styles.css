@@ -1,32 +1,43 @@
-body{
+body {
     margin: 0;
     height: 100vh;
     background-color: rgb(249, 247, 249);
     font-family: Arial, sans-serif;
 }
-.image_style{
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: blueviolet;
+}
+
+.image_style {
     width: 200px; 
     height: 200px;
-    border-radius: 20px; 
+    border-radius: 20px;
     box-shadow: 0px 4px 8px rgba(2, 2, 2, 0.2); 
     margin: 0px; 
 }
+
 .image_style:hover {
     transform: scale(1.1);
 }
-.unstyled_list{
+
+.unstyled_list {
     list-style-type: none;
-    padding-left: 10;
+    padding-left: 10px;
     margin: 0;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
     padding: 25px;
 }
+
 .unstyled_list li {
     background-color: white; 
     border-radius: 20px; 
-    box-shadow: 0 30px 30px #757676; 
+    box-shadow: 0 30px 30px #dadada; 
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
     padding: 15px; 
     display: flex; 
@@ -34,30 +45,64 @@ body{
     align-items: center;
     text-align: center; 
 }
-header .shooping{
-    position: relative;
-    left: -100px;
-}
-header{
+
+header {
     display: grid;
-    grid-template-columns: 1fr 50px;
+    grid-template-columns: 1fr 2fr 50px;
+    gap: 10px;
     margin-top: 50px;
+    align-items: center;
 }
-h1{
-    margin-top: 10px;
-    margin-bottom: 20px;
+
+header h1 {
+    margin: 0;
     font-size: 2.5em;
     color: blueviolet;
-    /* margin-left: 30px; */
+    margin-left: 30px;
 }
+
+#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-input {
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+button {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: purple;
+}
+
+.shopping {
+    position: relative;
+    left: -50px;
+}
+
 .cart-icon {
     cursor: pointer; 
     color: blueviolet;
 }
-.cart-icon:hover{
+
+.cart-icon:hover {
     color: rgb(213, 120, 218);
 }
-.cart-count{
+
+.cart-count {
     position: absolute;
     right: 5px;
     top: -10px;
@@ -67,54 +112,6 @@ h1{
     color: white;
     font-size: 0.8rem;
 }
-h2{
-    color: rgb(15, 15, 15);
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-p{
-    color: rgb(233, 14, 14);
-    margin-bottom: 20px;
-    font-size: 1em;
-}
-.buy-button{
-    background-color: white;
-    border-radius: 20px;
-    border-color: blueviolet;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    margin-top: 10px;
-    cursor: pointer;
-    color: blueviolet;
-}
-.add-button{
-    background-color: white;
-    border-radius: 20px;
-    border-color: orange;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    margin-top: 10px;
-    cursor: pointer;
-}
-.add-button:active{
-    transform: scale(0.95);
-    transition: transform 0.3s ease-in-out;
-    background-color: orange;
-    color: white;
-}
-.buy-button:active{
-    transform: scale(0.95);
-    transition: transform 0.3s ease-in-out;
-    background-color: blueviolet;
-    color: black;
-}
-
 .cart-tab {
     position: fixed;
     top: 0;
@@ -123,7 +120,7 @@ p{
     height: 100%;
     background-color: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    transition: right 0.3s ease; 
+    transition: right 0.3s ease;
     padding: 20px;
     box-sizing: border-box;
     z-index: 1000;
@@ -131,7 +128,7 @@ p{
 }
 
 .cart-tab.open {
-    right: 0; 
+    right: 0;
 }
 
 .cart-tab h2 {
@@ -160,6 +157,12 @@ p{
     color: #555;
 }
 
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
 .cart-item .remove-item {
     background-color: red;
     color: white;
@@ -174,7 +177,7 @@ p{
 }
 
 .cart-tab {
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 .cart-tab::-webkit-scrollbar {
@@ -184,4 +187,17 @@ p{
 .cart-tab::-webkit-scrollbar-thumb {
     background-color: blueviolet;
     border-radius: 10px;
+}
+
+#search-input {
+    padding: 10px;  
+    font-size: 1rem;  
+    border-radius: 5px; 
+    border: 2px solid purple; 
+    width: 250px; 
+    outline: none; 
+}
+
+#search-input:focus {
+    border-color: blueviolet;
 }
