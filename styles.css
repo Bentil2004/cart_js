@@ -112,6 +112,7 @@ button:hover {
     color: white;
     font-size: 0.8rem;
 }
+
 .cart-tab {
     position: fixed;
     top: 0;
@@ -119,74 +120,81 @@ button:hover {
     width: 300px;
     height: 100%;
     background-color: white;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     padding: 20px;
-    box-sizing: border-box;
-    z-index: 1000;
-    overflow-y: auto;
 }
 
 .cart-tab.open {
-    right: 0;
-}
-
-.cart-tab h2 {
-    margin-top: 0;
-    font-size: 1.5em;
-    color: blueviolet;
+    transform: translateX(-300px);
 }
 
 .cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-}
-
-.cart-item h3 {
-    margin: 0;
-    font-size: 1.1em;
-    color: #333;
-}
-
-.cart-item p {
-    margin: 5px 0;
-    color: #555;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .cart-item img {
     width: 50px;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 50%;
 }
 
-.cart-item .remove-item {
-    background-color: red;
+.cart-total {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.custom-alert {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
     color: white;
-    border: none;
-    padding: 5px 10px;
+    padding: 15px;
     border-radius: 5px;
+    font-size: 1.1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+}
+
+.custom-alert .alert-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-alert {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
-}
-
-.cart-item .remove-item:hover {
-    background-color: darkred;
-}
-
-.cart-tab {
-    overflow-y: auto;
-}
-
-.cart-tab::-webkit-scrollbar {
-    width: 5px;
-}
-
-.cart-tab::-webkit-scrollbar-thumb {
-    background-color: blueviolet;
-    border-radius: 10px;
 }
 
 #search-input {
