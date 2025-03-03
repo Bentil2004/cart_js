@@ -26,6 +26,25 @@ const cartContent = document.createElement("div");
 cartContent.classList.add("cart-content");
 cartTab.appendChild(cartContent);
 
+const lightboxModal = document.getElementById('lightbox-modal');
+const lightboxImage = document.getElementById('lightbox-image');
+const closeLightbox = document.getElementById('close-lightbox');
+
+function openLightbox(imageSrc) {
+    lightboxImage.src = imageSrc;
+    lightboxModal.style.display = 'flex';
+}
+
+closeLightbox.addEventListener('click', () => {
+    lightboxModal.style.display = 'none';
+});
+
+lightboxModal.addEventListener('click', (event) => {
+    if (event.target === lightboxModal) {
+        lightboxModal.style.display = 'none';
+    }
+});
+
 cartIcon.addEventListener("click", () => {
   cartTab.classList.toggle("open");
   displayCartItems();
@@ -37,15 +56,23 @@ function generateProductList(filteredProducts = products) {
   filteredProducts.forEach((product) => {
     const productItem = document.createElement("li");
     productItem.innerHTML = `
-        <h2>${product.name}</h2>
-        <img src="${product.imageSrc}" alt="${product.name}" class="image_style">
-        <p>Price: $${product.price}</p>
-        <div class="button-container">
-            <button class="buy-button">Buy Now</button>
-            <button class="add-button">Add to cart</button>
-        </div>
-      `;
+      <h2>${product.name}</h2>
+      <img src="${product.imageSrc}" alt="${product.name}" class="image_style" data-image="${product.imageSrc}">
+      <p>Price: $${product.price}</p>
+      <div class="button-container">
+        <button class="buy-button">Buy Now</button>
+        <button class="add-button">Add to cart</button>
+      </div>
+    `;
     productList.appendChild(productItem);
+  });
+
+  const productImages = document.querySelectorAll(".image_style");
+  productImages.forEach((image) => {
+    image.addEventListener("click", () => {
+      const imageSrc = image.getAttribute("data-image");
+      openLightbox(imageSrc);
+    });
   });
 
   const addToCartButtons = document.querySelectorAll(".add-button");
@@ -87,15 +114,15 @@ function showCustomAlert(message) {
   const alertContainer = document.createElement("div");
   alertContainer.classList.add("custom-alert");
   alertContainer.innerHTML = `
-      <div class="alert-box">
-        <p>${message}</p>
-      </div>
-    `;
+    <div class="alert-box">
+      <p>${message}</p>
+    </div>
+  `;
   document.body.appendChild(alertContainer);
 
   setTimeout(() => {
     alertContainer.remove();
-  }, 1500);
+  }, 2000);
 }
 
 function updateCartCount() {
@@ -115,29 +142,27 @@ function displayCartItems() {
       itemElement.classList.add("cart-item");
 
       itemElement.innerHTML = `
-          <img src="${item.imageSrc}" alt="${
-        item.name
-      }" style="width: 50px; height: 50px; border-radius: 50px;">
-          <div>
-            <h3>${item.name}</h3>
-            <p>Price: $${item.price.toFixed(2)}</p>
-            <div class="quantity-container">
-              <button class="decrease-quantity" data-index="${index}">-</button>
-              <span class="quantity">${item.quantity}</span>
-              <button class="increase-quantity" data-index="${index}">+</button>
-            </div>
+        <img src="${item.imageSrc}" alt="${item.name}" style="width: 50px; height: 50px; border-radius: 50px;">
+        <div>
+          <h3>${item.name}</h3>
+          <p>Price: $${item.price.toFixed(2)}</p>
+          <div class="quantity-container">
+            <button class="decrease-quantity" data-index="${index}">-</button>
+            <span class="quantity">${item.quantity}</span>
+            <button class="increase-quantity" data-index="${index}">+</button>
           </div>
-          <button class="remove-item" data-index="${index}">Remove</button>
-        `;
+        </div>
+        <button class="remove-item" data-index="${index}">Remove</button>
+      `;
 
       cartContent.appendChild(itemElement);
     });
 
     cartContent.innerHTML += `
-        <div class="cart-total">
-            <h3>Total: $${totalPrice.toFixed(2)}</h3>
-        </div>
-      `;
+      <div class="cart-total">
+        <h3>Total: $${totalPrice.toFixed(2)}</h3>
+      </div>
+    `;
 
     const removeButtons = document.querySelectorAll(".remove-item");
     removeButtons.forEach((button) => {
@@ -169,12 +194,12 @@ function showRemoveConfirmation(index) {
   const modal = document.createElement("div");
   modal.classList.add("modal");
   modal.innerHTML = `
-      <div class="modal-content" style="width : 500px">
-          <h3>Are you sure you want to remove this item from your cart?</h3>
-          <button id="confirm-remove">Yes</button>
-          <button id="cancel-remove">No</button>
-      </div>
-    `;
+    <div class="modal-content" style="width : 500px">
+      <h3>Are you sure you want to remove this item from your cart?</h3>
+      <button id="confirm-remove">Yes</button>
+      <button id="cancel-remove">No</button>
+    </div>
+  `;
   document.body.appendChild(modal);
 
   document.getElementById("confirm-remove").addEventListener("click", () => {
